@@ -1,22 +1,22 @@
-$button-line-height: 3.60rem !default;
-$button-padding: 0 0.600rem !default;
-$button-margin: 0.600rem 0.800rem !default;
-$button-min-width: 8.800rem !default;
+$button-line-height: rem(3.60) !default;
+$button-padding: 0 rem(0.600) !default;
+$button-margin: rem(0.600) rem(0.800) !default;
+$button-min-width: rem(8.800) !default;
 
 // Fab buttons
-$button-fab-width: 5.600rem !default;
-$button-fab-height: 5.600rem !default;
-$button-fab-line-height: 5.600rem !default;
-$button-fab-padding: 1.60rem !default;
-$button-fab-mini-width: 4.00rem !default;
-$button-fab-mini-height: 4.00rem !default;
-$button-fab-mini-line-height: 4.00rem !default;
+$button-fab-width: rem(5.600) !default;
+$button-fab-height: rem(5.600) !default;
+$button-fab-line-height: rem(5.600) !default;
+$button-fab-padding: rem(1.60) !default;
+$button-fab-mini-width: rem(4.00) !default;
+$button-fab-mini-height: rem(4.00) !default;
+$button-fab-mini-line-height: rem(4.00) !default;
 
-$button-fab-toast-offset: $button-fab-height * 0.75;
+$button-fab-toast-offset: $button-fab-height * 0.75 !default;
 
-$icon-button-height: 4.800rem !default;
-$icon-button-width: 4.800rem !default;
-$icon-button-margin: 0.600rem !default;
+$icon-button-height: rem(4.800) !default;
+$icon-button-width: rem(4.800) !default;
+$icon-button-margin: rem(0.600) !default;
 
 /**
  * Position a FAB button.
@@ -44,6 +44,7 @@ $icon-button-margin: 0.600rem !default;
   padding: $button-padding;
   margin: $button-margin;
   line-height: $button-line-height;
+  min-height: $button-line-height;
   background: transparent;
   white-space: nowrap;
   // override for FAB, icon buttons, etc.
@@ -102,7 +103,18 @@ $icon-button-margin: 0.600rem !default;
     margin: 0 $icon-button-margin;
     height: $icon-button-height;
     min-width: 0;
+    line-height: $icon-button-height;
+    padding-left: 0;
+    padding-right: 0;
     width: $icon-button-width;
+    border-radius: 50%;
+    .md-ripple-container {
+      border-radius: 50%;
+      background-clip: padding-box;
+      overflow: hidden;
+      // The following hack causes Safari/Chrome to respect overflow hidden for ripples
+      -webkit-mask-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAIAAACQd1PeAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAA5JREFUeNpiYGBgAAgwAAAEAAGbA+oJAAAAAElFTkSuQmCC');
+    }
   }
 
   &.md-fab {
@@ -131,8 +143,8 @@ $icon-button-margin: 0.600rem !default;
       border-radius: 50%;
       background-clip: padding-box;
       overflow: hidden;
-      // The following hack causes Safari to respect overflow hidden for ripples
-      -webkit-mask-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAIAAACQd1PeAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAA5JREFUeNpiYGBgAAgwAAAEAAGbA+oJAAAAAElFTkSuQmCC);
+      // The following hack causes Safari/Chrome to respect overflow hidden for ripples
+      -webkit-mask-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAIAAACQd1PeAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAA5JREFUeNpiYGBgAAgwAAAEAAGbA+oJAAAAAElFTkSuQmCC');
     }
 
     md-icon {
@@ -150,7 +162,7 @@ $icon-button-margin: 0.600rem !default;
   &:not([disabled]) {
     &.md-raised,
     &.md-fab {
-      &:focus {
+      &.md-focused {
         @extend .md-shadow-bottom-z-1;
       }
       &:active {
@@ -165,7 +177,7 @@ $icon-button-margin: 0.600rem !default;
   .md-button.md-fab-top-right {
     transform: translate3d(0, $button-fab-toast-offset, 0);
     &:not([disabled]) {
-      &:focus,
+      &.md-focused,
       &:hover {
         transform: translate3d(0, $button-fab-toast-offset - 1, 0);
       }
@@ -177,14 +189,13 @@ $icon-button-margin: 0.600rem !default;
   .md-button.md-fab-bottom-right {
     transform: translate3d(0, -$button-fab-toast-offset, 0);
     &:not([disabled]) {
-      &:focus,
+      &.md-focused,
       &:hover {
         transform: translate3d(0, -$button-fab-toast-offset - 1, 0);
       }
     }
   }
 }
-
 
 .md-button-group {
   display: flex;

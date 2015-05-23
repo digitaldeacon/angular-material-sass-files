@@ -22,8 +22,8 @@ button.md-no-style {
   background-color: inherit;
   text-align: left;
   border: none;
-  padding: 0px;
-  margin: 0px;
+  padding: 0;
+  margin: 0;
 }
 
 select,
@@ -64,7 +64,7 @@ input {
   }
 }
 
-.visually-hidden {
+.md-visually-hidden {
   border: 0;
   clip: rect(0 0 0 0);
   height: 1px;
@@ -144,6 +144,21 @@ input {
 
 .md-margin {
   margin: 8px;
+}
+
+.md-scroll-mask {
+  position: absolute;
+  background-color: transparent;
+  > .md-scroll-mask-bar {
+    display: block;
+    position: absolute;
+    background-color: #fafafa;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    z-index: $z-index-scroll-mask;
+    box-shadow: inset 0px 0px 1px rgba(0, 0, 0, 0.3)
+  }
 }
 
 @media (min-width: $layout-breakpoint-sm) {
